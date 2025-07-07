@@ -1,6 +1,6 @@
 package com.davigj.frame_changer.core.mixin;
 
-import com.teamabnormals.blueprint.core.util.BlockUtil;
+import com.davigj.frame_changer.core.FrameChanger;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,7 +16,7 @@ public class HammerAndChiselItemMixin {
     @Inject(method = "getChiseled", at = @At("HEAD"), cancellable = true, remap = false)
     private static void dodgyProblemsRequireDodgierSolutions(BlockState state, CallbackInfoReturnable<Optional<BlockState>> cir) {
         if (CHISEL_MAP.containsKey(state.getBlock())) {
-            BlockState convertedState = BlockUtil.transferAllBlockStates(state, CHISEL_MAP.get(state.getBlock()).defaultBlockState());
+            BlockState convertedState = FrameChanger.transferAllBlockStates(state, CHISEL_MAP.get(state.getBlock()).defaultBlockState());
             cir.setReturnValue(Optional.ofNullable(convertedState));
         }
     }

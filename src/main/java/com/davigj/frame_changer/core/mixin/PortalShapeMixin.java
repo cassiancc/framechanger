@@ -18,8 +18,6 @@ public class PortalShapeMixin {
     private static final BlockBehaviour.StatePredicate FRAME;
 
     static {
-        FRAME = (p_77720_, p_77721_, p_77722_) -> {
-            return FCConfig.COMMON.portalFrameTag.get() ? p_77720_.is(FCBlockTags.PORTAL_FRAMES) : p_77720_.isPortalFrame(p_77721_, p_77722_);
-        };
+        FRAME = (p_77720_, p_77721_, p_77722_) -> p_77720_.is(FCBlockTags.PORTAL_FRAMES);
     }
 }

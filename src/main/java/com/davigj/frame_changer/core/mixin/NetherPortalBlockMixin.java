@@ -1,8 +1,8 @@
 package com.davigj.frame_changer.core.mixin;
 
 import com.davigj.frame_changer.core.FCConfig;
-import com.davigj.frame_changer.core.other.FCConstants;
-import com.teamabnormals.blueprint.core.util.BlockUtil;
+import com.davigj.frame_changer.core.FrameChanger;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -11,9 +11,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.NetherPortalBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.portal.PortalShape;
-import net.neoforged.fml.ModList;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,7 +26,7 @@ public class NetherPortalBlockMixin {
     @Inject(method = "updateShape", at = @At("HEAD"))
     private void updateObby(BlockState state, Direction dir, BlockState nextState, LevelAccessor level, BlockPos pos, BlockPos nextPos, CallbackInfoReturnable<BlockState> cir) {
         if (!level.isClientSide()) {
-            if (ModList.get().isLoaded("spelunkery")) {
+            if (FabricLoader.getInstance().isModLoaded("spelunkery")) {
                 if (spelunkeryCryingPortals) {
                     framechanger$fluidSpread(state, (Level) level, pos, 0.33D);
                 }
@@ -46,8 +44,8 @@ public class NetherPortalBlockMixin {
         for (Direction cryDir : Direction.values()) {
             BlockState cryState = level.getBlockState(pos.relative(cryDir));
             if (random.nextDouble() < cryChance && OBBY_MAP.containsKey(cryState.getBlock()) && !(new PortalShape(level, pos, axis2)).isComplete()) {
-                BlockState convertedState = BlockUtil.transferAllBlockStates(cryState, OBBY_MAP.get(cryState.getBlock()).defaultBlockState());
-                if (ModList.get().isLoaded("spelunkery")) {
+                BlockState convertedState = FrameChanger.transferAllBlockStates(cryState, OBBY_MAP.get(cryState.getBlock()).defaultBlockState());
+                if (FabricLoader.getInstance().isModLoaded("spelunkery")) {
                     if (!(spelunkeryCryingPortals && cryState.is(Blocks.OBSIDIAN))) {
                         level.setBlock(pos.relative(cryDir), convertedState, 3);
                     }

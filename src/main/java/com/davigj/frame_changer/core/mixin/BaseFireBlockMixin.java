@@ -10,19 +10,19 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(BaseFireBlock.class)
 public class BaseFireBlockMixin {
-    @WrapOperation(method = "isPortal", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;isPortalFrame(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z"))
-    private static boolean isPortalFrame(BlockState instance, BlockGetter blockGetter, BlockPos pos, Operation<Boolean> original, Level level, BlockPos blockPos, @Local BlockPos.MutableBlockPos mutable,
-                             @Local boolean flag, @Local(ordinal = 1) Direction direction) {
+    @WrapOperation(method = "isPortal", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"))
+    private static boolean isPortalFrame(BlockState instance, Block block, Operation<Boolean> original) {
         if (FCConfig.COMMON.portalFrameTag.get()) {
-            return level.getBlockState(mutable.set(pos).move(direction)).is(FCBlockTags.PORTAL_FRAMES);
+            return instance.is(FCBlockTags.PORTAL_FRAMES);
         } else {
-            return original.call(instance, blockGetter, pos);
+            return original.call(instance, block);
         }
     }
 }

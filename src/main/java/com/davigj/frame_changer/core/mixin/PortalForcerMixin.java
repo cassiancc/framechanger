@@ -5,6 +5,7 @@ import com.davigj.frame_changer.core.FrameChanger;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +14,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.portal.PortalForcer;
-import net.neoforged.fml.ModList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.*;
@@ -63,7 +63,7 @@ public class PortalForcerMixin {
         }
         String modid = parts[0];
         String blockID = parts[1];
-        if (!ModList.get().isLoaded(modid) && modid != null) {
+        if (!FabricLoader.getInstance().isModLoaded(modid) && modid != null) {
             framechanger$LOGGER.warn("Mod '" + modid + "' not loaded, invalid configured exit portal frame blockID. String should be formatted 'modID:blockID'. Defaulting to minecraft:obsidian");
             return () -> Blocks.OBSIDIAN;
         }
@@ -73,7 +73,7 @@ public class PortalForcerMixin {
             framechanger$LOGGER.warn("Invalid configured exit portal frame blockID. String should be formatted 'modID:blockID'. Defaulting to minecraft:obsidian");
             return () -> Blocks.OBSIDIAN;
         }
-        return (ModList.get().isLoaded(modid) ? () -> BuiltInRegistries.BLOCK.get(block) : () -> null);
+        return (FabricLoader.getInstance().isModLoaded(modid) ? () -> BuiltInRegistries.BLOCK.get(block) : () -> null);
     }
 
 }

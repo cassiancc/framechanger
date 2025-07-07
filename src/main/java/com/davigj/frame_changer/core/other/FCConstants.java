@@ -2,9 +2,9 @@ package com.davigj.frame_changer.core.other;
 
 import com.davigj.frame_changer.core.registry.FCBlocks;
 import com.ordana.spelunkery.configs.CommonConfigs;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.fml.ModList;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +38,6 @@ public class FCConstants {
     }
 
     static {
-        spelunkeryCryingPortals = ModList.get().isLoaded("spelunkery") ? CommonConfigs.PORTAL_DESTRUCTION_CRYING_OBSIDIAN.get() : false;
+        spelunkeryCryingPortals = FabricLoader.getInstance().isModLoaded("spelunkery") ? CommonConfigs.PORTAL_DESTRUCTION_CRYING_OBSIDIAN.get() : false;
     }
 }

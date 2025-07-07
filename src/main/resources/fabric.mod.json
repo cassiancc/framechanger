@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "frame_changer",
+  "version": "${version}",
+  "name": "Frame Changer",
+  "description": "Adds some flexibility to Nether portal frames in the form of a block tag and other configurable features.",
+  "authors": [
+    "DavigJ",
+    "casssiancc"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/frame-changer",
+    "sources": "https://github.com/cassiancc/framechanger",
+    "issues": "https://github.com/cassiancc/framechanger/issues"
+  },
+  "license": "MIT",
+  "icon": "logo.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.davigj.frame_changer.core.FrameChanger"
+    ],
+    "client": [
+      "com.davigj.frame_changer.core.FrameChangerClient"
+    ]
+  },
+  "mixins": [
+    "frame_changer.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.14",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "architectury": "*",
+    "forgeconfigapiport": "*"
+  }
+}
