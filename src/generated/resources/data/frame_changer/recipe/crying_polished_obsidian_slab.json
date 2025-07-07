@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "frame_changer:crying_polished_obsidian"
-    }
+    "#":  "frame_changer:crying_polished_obsidian"
   },
   "pattern": [
     "###"

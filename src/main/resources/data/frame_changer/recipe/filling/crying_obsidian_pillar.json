@@ -9,9 +9,7 @@
   ],
   "type": "create:filling",
   "ingredients": [
-    {
-      "item": "frame_changer:obsidian_pillar"
-    },
+    "frame_changer:obsidian_pillar",
     {
       "fluid": "spelunkery:portal_fluid",
       "amount": 250

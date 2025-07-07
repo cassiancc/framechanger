@@ -9,9 +9,7 @@
   ],
   "type": "create:filling",
   "ingredients": [
-    {
-      "item": "frame_changer:chiseled_obsidian"
-    },
+    "frame_changer:chiseled_obsidian",
     {
       "fluid": "spelunkery:portal_fluid",
       "amount": 250

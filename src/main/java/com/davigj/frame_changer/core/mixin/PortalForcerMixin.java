@@ -30,7 +30,7 @@ public class PortalForcerMixin {
     @Mutable
     @Final
     @Shadow
-    protected final ServerLevel level;
+    private final ServerLevel level;
 
     public PortalForcerMixin(ServerLevel level) {
         this.level = level;
@@ -69,11 +69,12 @@ public class PortalForcerMixin {
         }
         assert modid != null;
         ResourceLocation block = ResourceLocation.fromNamespaceAndPath(modid, blockID);
-        if (BuiltInRegistries.BLOCK.get(block) == Blocks.AIR) {
+        if (BuiltInRegistries.BLOCK.getOptional(block).isEmpty()) {
             framechanger$LOGGER.warn("Invalid configured exit portal frame blockID. String should be formatted 'modID:blockID'. Defaulting to minecraft:obsidian");
             return () -> Blocks.OBSIDIAN;
         }
-        return (FabricLoader.getInstance().isModLoaded(modid) ? () -> BuiltInRegistries.BLOCK.get(block) : () -> null);
+        if (FabricLoader.getInstance().isModLoaded(modid)) return () -> BuiltInRegistries.BLOCK.getOptional(block).orElse(null);
+        return () -> null;
     }
 
 }

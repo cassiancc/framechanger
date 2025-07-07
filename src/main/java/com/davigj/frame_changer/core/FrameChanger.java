@@ -2,7 +2,7 @@ package com.davigj.frame_changer.core;
 
 import com.davigj.frame_changer.core.other.FCEvents;
 import com.davigj.frame_changer.core.registry.FCBlocks;
-import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.NeoForgeConfigRegistry;
+import fuzs.forgeconfigapiport.fabric.api.v5.ConfigRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.world.level.block.state.BlockState;
@@ -19,7 +19,7 @@ public class FrameChanger implements ModInitializer {
         initializeObbyMap();
         determineChiselMap();
         portalFluidMap();
-        NeoForgeConfigRegistry.INSTANCE.register(MOD_ID, ModConfig.Type.COMMON, FCConfig.COMMON_SPEC);
+        ConfigRegistry.INSTANCE.register(MOD_ID, ModConfig.Type.COMMON, FCConfig.COMMON_SPEC);
         UseBlockCallback.EVENT.register(FCEvents::onPlayerRightClickBlock);
     }
 

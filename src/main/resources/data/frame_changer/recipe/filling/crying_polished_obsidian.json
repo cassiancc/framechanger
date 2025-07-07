@@ -9,9 +9,7 @@
   ],
   "type": "create:filling",
   "ingredients": [
-    {
-      "item": "frame_changer:polished_obsidian"
-    },
+    "frame_changer:polished_obsidian",
     {
       "fluid": "spelunkery:portal_fluid",
       "amount": 250

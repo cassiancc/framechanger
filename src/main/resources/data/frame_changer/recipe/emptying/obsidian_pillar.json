@@ -9,9 +9,7 @@
   ],
   "type": "create:emptying",
   "ingredients": [
-    {
-      "item": "frame_changer:crying_obsidian_pillar"
-    }
+    "frame_changer:crying_obsidian_pillar"
   ],
   "results": [
     {

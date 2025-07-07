@@ -9,12 +9,8 @@
   ],
   "type": "create:mixing",
   "ingredients": [
-    {
-      "item": "frame_changer:crying_chiseled_obsidian"
-    },
-    {
-      "item": "minecraft:glowstone_dust"
-    }
+    "frame_changer:crying_chiseled_obsidian",
+    "minecraft:glowstone_dust"
   ],
   "results": [
     {

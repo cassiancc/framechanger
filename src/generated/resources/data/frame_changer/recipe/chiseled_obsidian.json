@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "frame_changer:obsidian_brick_slab"
-    }
+    "#": "frame_changer:obsidian_brick_slab"
   },
   "pattern": [
     "#",

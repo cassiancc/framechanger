@@ -9,12 +9,8 @@
   ],
   "type": "create:mixing",
   "ingredients": [
-    {
-      "item": "frame_changer:crying_obsidian_pillar"
-    },
-    {
-      "item": "minecraft:glowstone_dust"
-    }
+    "frame_changer:crying_obsidian_pillar",
+    "minecraft:glowstone_dust"
   ],
   "results": [
     {

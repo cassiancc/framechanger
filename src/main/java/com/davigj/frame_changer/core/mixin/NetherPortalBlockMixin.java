@@ -8,6 +8,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.NetherPortalBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,7 +26,7 @@ import static com.davigj.frame_changer.core.other.FCConstants.spelunkeryCryingPo
 @Mixin(NetherPortalBlock.class)
 public class NetherPortalBlockMixin {
     @Inject(method = "updateShape", at = @At("HEAD"))
-    private void updateObby(BlockState state, Direction dir, BlockState nextState, LevelAccessor level, BlockPos pos, BlockPos nextPos, CallbackInfoReturnable<BlockState> cir) {
+    private void updateObby(BlockState state, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos blockPos2, BlockState blockState2, RandomSource randomSource, CallbackInfoReturnable<BlockState> cir) {
         if (!level.isClientSide()) {
             if (FabricLoader.getInstance().isModLoaded("spelunkery")) {
                 if (spelunkeryCryingPortals) {
@@ -43,7 +45,7 @@ public class NetherPortalBlockMixin {
         RandomSource random = level.getRandom();
         for (Direction cryDir : Direction.values()) {
             BlockState cryState = level.getBlockState(pos.relative(cryDir));
-            if (random.nextDouble() < cryChance && OBBY_MAP.containsKey(cryState.getBlock()) && !(new PortalShape(level, pos, axis2)).isComplete()) {
+            if (random.nextDouble() < cryChance && OBBY_MAP.containsKey(cryState.getBlock()) && !(PortalShape.findAnyShape(level, pos, axis2)).isComplete()) {
                 BlockState convertedState = FrameChanger.transferAllBlockStates(cryState, OBBY_MAP.get(cryState.getBlock()).defaultBlockState());
                 if (FabricLoader.getInstance().isModLoaded("spelunkery")) {
                     if (!(spelunkeryCryingPortals && cryState.is(Blocks.OBSIDIAN))) {
