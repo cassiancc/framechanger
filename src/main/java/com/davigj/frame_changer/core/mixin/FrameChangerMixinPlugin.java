@@ -21,7 +21,7 @@ public class FrameChangerMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if ((mixinClassName.contains("PortalShapeMixin") || mixinClassName.contains("BaseFireBlock") || mixinClassName.contains("NetherPortalBlockMixin")) && FabricLoader.getInstance().isModLoaded("quad")) return false;
+        if (FabricLoader.getInstance().isModLoaded("quad")) return false;
         return true;
     }
 
