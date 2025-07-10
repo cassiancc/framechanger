@@ -15,5 +15,6 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "plugin": "com.davigj.frame_changer.core.mixin.FrameChangerMixinPlugin"
 }
