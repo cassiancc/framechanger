@@ -38,7 +38,7 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:21.5.1"
+	modImplementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:21.9.8"
 	modCompileOnly "maven.modrinth:spelunkery:xEa903Qn"
 	modCompileOnly ("maven.modrinth:moonlight:6F1SL7NR") // Mandatory dep for Supplementaries
 
