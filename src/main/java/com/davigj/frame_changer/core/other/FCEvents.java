@@ -1,7 +1,7 @@
 package com.davigj.frame_changer.core.other;
 
 import com.davigj.frame_changer.core.FrameChanger;
-import com.ordana.spelunkery.reg.ModItems;
+import com.ordana.dimensional_tears.reg.ModItems;
 import com.teamabnormals.blueprint.core.util.BlockUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
@@ -35,7 +35,7 @@ public class FCEvents {
             player.level().setBlock(event.getPos(), convertedState, 3);
             player.swing(event.getHand());
             event.setCancellationResult(InteractionResult.SUCCESS);
-            ItemStack portalFluid = new ItemStack(ModItems.PORTAL_FLUID_BOTTLE.get());
+            ItemStack portalFluid = new ItemStack(ModItems.DIMENSIONAL_TEARS_BOTTLE.get());
             player.level().playSound(player, event.getPos(), SoundEvents.RESPAWN_ANCHOR_DEPLETE.value(), SoundSource.BLOCKS, 1.0f, 1.0f);
             ParticleUtils.spawnParticlesOnBlockFaces(player.level(), event.getPos(), ParticleTypes.FALLING_OBSIDIAN_TEAR, UniformInt.of(3, 5));
             if (!player.getAbilities().instabuild) {

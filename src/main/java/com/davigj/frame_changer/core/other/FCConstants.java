@@ -1,7 +1,7 @@
 package com.davigj.frame_changer.core.other;
 
 import com.davigj.frame_changer.core.registry.FCBlocks;
-import com.ordana.spelunkery.configs.CommonConfigs;
+import com.ordana.dimensional_tears.configs.CommonConfigs;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.ModList;
@@ -38,6 +38,6 @@ public class FCConstants {
     }
 
     static {
-        spelunkeryCryingPortals = ModList.get().isLoaded("spelunkery") ? CommonConfigs.PORTAL_DESTRUCTION_CRYING_OBSIDIAN.get() : false;
+        spelunkeryCryingPortals = ModList.get().isLoaded("dimensional_tears") ? CommonConfigs.CRYING_OBSIDIAN_DIMENSIONAL_TEARS.get() : false;
     }
 }
