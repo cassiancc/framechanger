@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version "${loom_version}"
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
 	id 'maven-publish'
 }
 
@@ -33,14 +33,13 @@ repositories {
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.officialMojangMappings()
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:21.9.8"
-	modCompileOnly "maven.modrinth:spelunkery:xEa903Qn"
-	modCompileOnly ("maven.modrinth:moonlight:6F1SL7NR") // Mandatory dep for Supplementaries
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	implementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:26.1.3"
+	compileOnly "maven.modrinth:dimensional-tears:m0JoomYU"
+	compileOnly ("maven.modrinth:moonlight:1.21-2.29.32-neoforge") // Mandatory dep for Supplementaries
 
 }
 
@@ -53,17 +52,17 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
+	it.options.release = 25
 }
 
 java {
-	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+	// Loom will automatically attach sourcesJar to a sourcesJar task and to the "build" task
 	// if it is present.
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
 }
 
 jar {

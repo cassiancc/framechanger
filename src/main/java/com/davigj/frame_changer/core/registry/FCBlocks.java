@@ -3,12 +3,12 @@ package com.davigj.frame_changer.core.registry;
 import com.davigj.frame_changer.common.block.CryingRotatedPillarBlock;
 import com.davigj.frame_changer.common.block.CryingSlabBlock;
 import com.davigj.frame_changer.common.block.CryingWallBlock;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -51,13 +51,13 @@ public class FCBlocks {
     public static final Supplier<Block> CRYING_CHISELED_OBSIDIAN = createCryingBlock("crying_chiseled_obsidian", BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(22.5F, 600.0F).lightLevel((p_152651_) -> {return 10;}));
 
     public static Supplier<Block> createBlock(String id, Supplier<Block> blockSupplier) {
-        Block block = Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(MOD_ID, id), blockSupplier.get());
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, id), new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, id)))));
+        Block block = Registry.register(BuiltInRegistries.BLOCK, Identifier.fromNamespaceAndPath(MOD_ID, id), blockSupplier.get());
+        Registry.register(BuiltInRegistries.ITEM, Identifier.fromNamespaceAndPath(MOD_ID, id), new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MOD_ID, id)))));
         return ()->block;
     }
 
     private static ResourceKey<Block> key(String id) {
-        return ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MOD_ID, id));
+        return ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MOD_ID, id));
     }
 
     private static Supplier<Block> createBlock(String id, BlockBehaviour.Properties properties) {
@@ -107,7 +107,7 @@ public class FCBlocks {
                 CRYING_OBSIDIAN_BRICKS, CRYING_OBSIDIAN_BRICK_STAIRS, CRYING_OBSIDIAN_BRICK_SLAB, CRYING_OBSIDIAN_BRICK_WALL,
                 CRYING_POLISHED_OBSIDIAN, CRYING_POLISHED_OBSIDIAN_STAIRS, CRYING_POLISHED_OBSIDIAN_SLAB, CRYING_POLISHED_OBSIDIAN_WALL,
                 CRYING_CHISELED_OBSIDIAN, CRYING_OBSIDIAN_PILLAR);
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.BUILDING_BLOCKS).register((groupEntries -> {
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((groupEntries -> {
             for (Supplier<Block> item : items) {
                 groupEntries.accept(item.get());
             }

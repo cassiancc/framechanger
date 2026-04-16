@@ -21,15 +21,15 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import static com.davigj.frame_changer.core.other.FCConstants.OBBY_MAP;
-import static com.davigj.frame_changer.core.other.FCConstants.spelunkeryCryingPortals;
+import static com.davigj.frame_changer.core.other.FCConstants.dimensional_tearsCryingPortals;
 
 @Mixin(NetherPortalBlock.class)
 public class NetherPortalBlockMixin {
     @Inject(method = "updateShape", at = @At("HEAD"))
     private void updateObby(BlockState state, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos blockPos2, BlockState blockState2, RandomSource randomSource, CallbackInfoReturnable<BlockState> cir) {
         if (!level.isClientSide()) {
-            if (FabricLoader.getInstance().isModLoaded("spelunkery")) {
-                if (spelunkeryCryingPortals) {
+            if (FabricLoader.getInstance().isModLoaded("dimensional_tears")) {
+                if (dimensional_tearsCryingPortals > 0) {
                     framechanger$fluidSpread(state, (Level) level, pos, 0.33D);
                 }
             } else if (FCConfig.COMMON.contagiousMisery.get()) {
@@ -47,8 +47,8 @@ public class NetherPortalBlockMixin {
             BlockState cryState = level.getBlockState(pos.relative(cryDir));
             if (random.nextDouble() < cryChance && OBBY_MAP.containsKey(cryState.getBlock()) && !(PortalShape.findAnyShape(level, pos, axis2)).isComplete()) {
                 BlockState convertedState = FrameChanger.transferAllBlockStates(cryState, OBBY_MAP.get(cryState.getBlock()).defaultBlockState());
-                if (FabricLoader.getInstance().isModLoaded("spelunkery")) {
-                    if (!(spelunkeryCryingPortals && cryState.is(Blocks.OBSIDIAN))) {
+                if (FabricLoader.getInstance().isModLoaded("dimensional_tears")) {
+                    if (!((dimensional_tearsCryingPortals > 0) && cryState.is(Blocks.OBSIDIAN))) {
                         level.setBlock(pos.relative(cryDir), convertedState, 3);
                     }
                 } else {

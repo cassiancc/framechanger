@@ -3,7 +3,7 @@
     {
       "condition": "fabric:all_mods_loaded",
       "values": [
-        "create", "spelunkery"
+        "create", "dimensional_tears"
       ]
     }
   ],
@@ -11,7 +11,7 @@
   "ingredients": [
     "frame_changer:obsidian_pillar",
     {
-      "fluid": "spelunkery:portal_fluid",
+      "fluid": "dimensional_tears:dimensional_tears",
       "amount": 250
     }
   ],

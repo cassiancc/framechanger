@@ -17,12 +17,12 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(BaseFireBlock.class)
 public class BaseFireBlockMixin {
-    @WrapOperation(method = "isPortal", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"))
-    private static boolean isPortalFrame(BlockState instance, Block block, Operation<Boolean> original) {
+    @WrapOperation(method = "isPortal", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z"))
+    private static boolean isPortalFrame(BlockState instance, Object o, Operation<Boolean> original) {
         if (FCConfig.COMMON.portalFrameTag.get()) {
             return instance.is(FCBlockTags.PORTAL_FRAMES);
         } else {
-            return original.call(instance, block);
+            return original.call(instance, o);
         }
     }
 }

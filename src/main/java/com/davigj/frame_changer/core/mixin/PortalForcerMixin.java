@@ -8,7 +8,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -68,7 +68,7 @@ public class PortalForcerMixin {
             return () -> Blocks.OBSIDIAN;
         }
         assert modid != null;
-        ResourceLocation block = ResourceLocation.fromNamespaceAndPath(modid, blockID);
+        Identifier block = Identifier.fromNamespaceAndPath(modid, blockID);
         if (BuiltInRegistries.BLOCK.getOptional(block).isEmpty()) {
             framechanger$LOGGER.warn("Invalid configured exit portal frame blockID. String should be formatted 'modID:blockID'. Defaulting to minecraft:obsidian");
             return () -> Blocks.OBSIDIAN;

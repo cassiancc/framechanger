@@ -13,6 +13,7 @@ import static com.davigj.frame_changer.core.other.FCConstants.CHISEL_MAP;
 
 @Mixin(targets = "com.ordana.spelunkery.items.HammerAndChiselItem")
 public class HammerAndChiselItemMixin {
+    /*
     @Inject(method = "getChiseled", at = @At("HEAD"), cancellable = true, remap = false)
     private static void dodgyProblemsRequireDodgierSolutions(BlockState state, CallbackInfoReturnable<Optional<BlockState>> cir) {
         if (CHISEL_MAP.containsKey(state.getBlock())) {
@@ -20,4 +21,6 @@ public class HammerAndChiselItemMixin {
             cir.setReturnValue(Optional.ofNullable(convertedState));
         }
     }
+
+     */
 }

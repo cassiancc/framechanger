@@ -1,7 +1,7 @@
 package com.davigj.frame_changer.core.other;
 
 import com.davigj.frame_changer.core.registry.FCBlocks;
-import com.ordana.spelunkery.configs.CommonConfigs;
+import com.ordana.dimensional_tears.configs.CommonConfigs;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -12,8 +12,8 @@ import java.util.Map;
 public class FCConstants {
     public static final Map<Block, Block> OBBY_MAP = new HashMap<>();
     public static final Map<Block, Block> CHISEL_MAP = new HashMap<>();
-    public static final Map<Block, Block> PORTAL_FLUID_MAP = new HashMap<>();
-    public static final boolean spelunkeryCryingPortals;
+    public static final Map<Block, Block> DIMENSIONAL_TEARS_MAP = new HashMap<>();
+    public static final double dimensional_tearsCryingPortals;
 
 
     public static void initializeObbyMap() {
@@ -31,13 +31,13 @@ public class FCConstants {
 
     // inefficient! awawawa
     public static void portalFluidMap() {
-        PORTAL_FLUID_MAP.put(FCBlocks.CRYING_OBSIDIAN_BRICKS.get(), FCBlocks.OBSIDIAN_BRICKS.get());
-        PORTAL_FLUID_MAP.put(FCBlocks.CRYING_OBSIDIAN_PILLAR.get(), FCBlocks.OBSIDIAN_PILLAR.get());
-        PORTAL_FLUID_MAP.put(FCBlocks.CRYING_CHISELED_OBSIDIAN.get(), FCBlocks.CHISELED_OBSIDIAN.get());
-        PORTAL_FLUID_MAP.put(FCBlocks.CRYING_POLISHED_OBSIDIAN.get(), FCBlocks.POLISHED_OBSIDIAN.get());
+        DIMENSIONAL_TEARS_MAP.put(FCBlocks.CRYING_OBSIDIAN_BRICKS.get(), FCBlocks.OBSIDIAN_BRICKS.get());
+        DIMENSIONAL_TEARS_MAP.put(FCBlocks.CRYING_OBSIDIAN_PILLAR.get(), FCBlocks.OBSIDIAN_PILLAR.get());
+        DIMENSIONAL_TEARS_MAP.put(FCBlocks.CRYING_CHISELED_OBSIDIAN.get(), FCBlocks.CHISELED_OBSIDIAN.get());
+        DIMENSIONAL_TEARS_MAP.put(FCBlocks.CRYING_POLISHED_OBSIDIAN.get(), FCBlocks.POLISHED_OBSIDIAN.get());
     }
 
     static {
-        spelunkeryCryingPortals = FabricLoader.getInstance().isModLoaded("spelunkery") ? CommonConfigs.PORTAL_DESTRUCTION_CRYING_OBSIDIAN.get() : false;
+        dimensional_tearsCryingPortals = FabricLoader.getInstance().isModLoaded("dimensional_tears") ? CommonConfigs.PORTAL_DESTRUCTION_CRYING_OBSIDIAN_CHANCE.get() : 0;
     }
 }
